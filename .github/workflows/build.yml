@@ -1,0 +1,31 @@
+name: Build
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v4
+      - uses: microsoft/setup-msbuild@v2
+      - uses: actions/cache@v4
+        with:
+          path: ~\.nuget\packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json', '**/packages.config') }}
+          restore-keys: ${{ runner.os }}-nuget-
+      - name: Build and package
+        shell: pwsh
+        run: ./scripts/build.ps1
+      - name: Validate artifacts
+        shell: pwsh
+        run: |
+          $zips = Get-ChildItem dist/*.zip
+          if ($zips.Count -ne 2) { throw 'Expected x64 and x86 ZIPs.' }
+          foreach ($zip in $zips) { if ($zip.Length -le 0) { throw "Empty artifact: $($zip.Name)" } }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: YouTubeWindows.Metro-win81
+          path: dist/*.zip
