@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup><Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration><Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform><ProjectGuid>{100CE1C1-57C7-4F46-A39E-CA6AA9B1553A}</ProjectGuid><OutputType>WinExe</OutputType><RootNamespace>YouTubeWindows.Metro.Launcher</RootNamespace><AssemblyName>YouTubeWindows.Metro.Launcher</AssemblyName><TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion><FileAlignment>512</FileAlignment><ApplicationIcon>..\YouTubeWindows.Metro\Assets\YouTubeWindows.Metro.ico</ApplicationIcon></PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' "><PlatformTarget>AnyCPU</PlatformTarget><OutputPath>bin\Release\</OutputPath><Optimize>true</Optimize><DefineConstants>TRACE</DefineConstants><WarningLevel>4</WarningLevel><Prefer32Bit>false</Prefer32Bit></PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' "><PlatformTarget>AnyCPU</PlatformTarget><OutputPath>bin\Debug\</OutputPath><DebugSymbols>true</DebugSymbols><DefineConstants>DEBUG;TRACE</DefineConstants><WarningLevel>4</WarningLevel><Prefer32Bit>false</Prefer32Bit></PropertyGroup>
+  <ItemGroup><Reference Include="System"/><Reference Include="System.Core"/><Reference Include="System.Runtime.Serialization"/><Reference Include="System.Windows.Forms"/><Reference Include="System.Xml"/></ItemGroup>
+  <ItemGroup><Compile Include="Program.cs"/><Compile Include="Configuration.cs"/><Compile Include="Launcher.cs"/><Compile Include="Properties\AssemblyInfo.cs"/><Compile Include="..\YouTubeWindows.Metro\Services\SettingsService.cs"><Link>Shared\SettingsService.cs</Link></Compile><Compile Include="..\YouTubeWindows.Metro\Services\LauncherService.cs"><Link>Shared\LauncherService.cs</Link></Compile></ItemGroup>
+  <Target Name="GenerateVersionAttributes" BeforeTargets="CoreCompile">
+    <ReadLinesFromFile File="$(MSBuildProjectDirectory)\..\..\VERSION"><Output TaskParameter="Lines" PropertyName="ProjectVersion" /></ReadLinesFromFile>
+    <PropertyGroup><ProjectVersion>$([System.String]::Copy('$(ProjectVersion)').Trim())</ProjectVersion></PropertyGroup>
+    <WriteLinesToFile File="$(IntermediateOutputPath)VersionInfo.g.cs" Lines="[assembly: System.Reflection.AssemblyVersion(&quot;$(ProjectVersion).0&quot;)];[assembly: System.Reflection.AssemblyFileVersion(&quot;$(ProjectVersion).0&quot;)]" Overwrite="true" />
+    <ItemGroup><Compile Include="$(IntermediateOutputPath)VersionInfo.g.cs" /></ItemGroup>
+  </Target>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

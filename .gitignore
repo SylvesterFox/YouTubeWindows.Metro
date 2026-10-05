@@ -1,0 +1,9 @@
+.vs/
+bin/
+obj/
+packages/
+dist/
+*.user
+*.suo
+*.log
+TestResults/

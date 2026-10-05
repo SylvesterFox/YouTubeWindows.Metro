@@ -1,0 +1,34 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouTubeWindows.Metro", "src\YouTubeWindows.Metro\YouTubeWindows.Metro.csproj", "{44C4A4EF-766D-4BD7-AC6A-1E6AA720215A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouTubeWindows.Metro.Launcher", "src\YouTubeWindows.Metro.Launcher\YouTubeWindows.Metro.Launcher.csproj", "{100CE1C1-57C7-4F46-A39E-CA6AA9B1553A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{44C4A4EF-766D-4BD7-AC6A-1E6AA720215A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44C4A4EF-766D-4BD7-AC6A-1E6AA720215A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44C4A4EF-766D-4BD7-AC6A-1E6AA720215A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44C4A4EF-766D-4BD7-AC6A-1E6AA720215A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44C4A4EF-766D-4BD7-AC6A-1E6AA720215A}.Release|x64.ActiveCfg = Release|Any CPU
+		{44C4A4EF-766D-4BD7-AC6A-1E6AA720215A}.Release|x64.Build.0 = Release|Any CPU
+		{44C4A4EF-766D-4BD7-AC6A-1E6AA720215A}.Release|x86.ActiveCfg = Release|Any CPU
+		{44C4A4EF-766D-4BD7-AC6A-1E6AA720215A}.Release|x86.Build.0 = Release|Any CPU
+		{100CE1C1-57C7-4F46-A39E-CA6AA9B1553A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{100CE1C1-57C7-4F46-A39E-CA6AA9B1553A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{100CE1C1-57C7-4F46-A39E-CA6AA9B1553A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{100CE1C1-57C7-4F46-A39E-CA6AA9B1553A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{100CE1C1-57C7-4F46-A39E-CA6AA9B1553A}.Release|x64.ActiveCfg = Release|Any CPU
+		{100CE1C1-57C7-4F46-A39E-CA6AA9B1553A}.Release|x64.Build.0 = Release|Any CPU
+		{100CE1C1-57C7-4F46-A39E-CA6AA9B1553A}.Release|x86.ActiveCfg = Release|Any CPU
+		{100CE1C1-57C7-4F46-A39E-CA6AA9B1553A}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
