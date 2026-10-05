@@ -86,4 +86,4 @@ GitHub Actions builds and uploads ZIP artifacts on pushes, pull requests, and ma
 - [x] Project structure, launcher, configuration, packaging, CI and documentation
 - [x] Windows 8.1 compatible desktop Start Screen tile architecture
 - [ ] TV controller support and process monitoring/automatic restart
-- [ ] Tested Windows 8.1 x86 and x64 hardware coverage
+- [ ] Tested Windows 8.1 x86 and x64 hardware coverage.
