@@ -1,0 +1,45 @@
+name: Release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v4
+      - uses: microsoft/setup-msbuild@v2
+      - uses: actions/cache@v4
+        with:
+          path: ~\.nuget\packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json', '**/packages.config') }}
+          restore-keys: ${{ runner.os }}-nuget-
+      - name: Set release version
+        shell: pwsh
+        run: |
+          if ('${{ github.ref_type }}' -eq 'tag') {
+            $tag = '${{ github.ref_name }}'
+            if ($tag -notmatch '^v(\d+\.\d+\.\d+)$') { throw "Tag must look like v1.2.3: $tag" }
+            Set-Content VERSION $Matches[1]
+          }
+      - name: Build and package
+        shell: pwsh
+        run: ./scripts/build.ps1
+      - name: Validate release files
+        shell: pwsh
+        run: |
+          $archives = Get-ChildItem dist/*.zip
+          if ($archives.Count -ne 2) { throw 'Expected x64 and x86 release ZIPs.' }
+          foreach ($file in $archives) { if ($file.Length -le 0) { throw "Empty package: $($file.Name)" } }
+      - uses: softprops/action-gh-release@v2
+        with:
+          name: YouTubeWindows.Metro ${{ github.ref_name }}
+          generate_release_notes: true
+          body: |
+            Version: ${{ github.ref_name }}
+            Architecture: x64 and x86 (AnyCPU managed frontend)
+            Windows compatibility: Windows 8.1 or later; .NET Framework 4.5.2+
+            Changes: Automated build and runtime packaging.
+            Known limitations: Desktop shortcut/tile, not an AppX/UWP app; upstream client and WebView2 runtime are supplied separately.
+          files: dist/*.zip
